@@ -50,6 +50,7 @@ class HorseRaces:
                 inner elements are the cells of each row
                 EXAMPLE: [["Horse", "Tenno Sho Fall", "Tenno Sho Spring", "Teio Sho"],
                           ["Special Week", "16.5", "16.3", "17.0"]]
+        
 
         Returns:
             nested dict structure from csv
@@ -57,6 +58,17 @@ class HorseRaces:
             inner keys are (str) races, inner values are (int) race times
             EXAMPLE: {'Special Week': {'Tenno Sho Fall': 16.5, 'Tenno Sho Spring': 16.3, 'Teio Sho': 17.0}}
         '''
+        header = table[0]
+        race_dict = {}
+        for row in table[1:]:
+            horse_name = row[0]
+            horse_races = {}
+            for i in range(len(row[1:])):
+                horse_races[header[i + 1]] = float(row[i+1])
+                race_dict[horse_name] = horse_races
+        return race_dict
+      
+            
         pass
 
 ###############################################################################
